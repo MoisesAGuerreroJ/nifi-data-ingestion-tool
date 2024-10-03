@@ -1,0 +1,23 @@
+version: '3'
+services:
+  mysql:
+    container_name: mysql
+    image: mysql:8.4.2
+    ports:
+      - 3306:3306
+    environment:
+      - MYSQL_ROOT_PASSWORD=Q1w2e3r4t5*
+      - MYSQL_DATABASE=raw_zone
+      - MYSQL_USER=service_usr
+      - MYSQL_PASSWORD=Q1w2e3r4t5*
+  nifi:
+    container_name: nifi
+    image: apache/nifi:1.25.0
+    ports:
+      - 8443:8443
+    environment:
+      - SINGLE_USER_CREDENTIALS_USERNAME=admin
+      - SINGLE_USER_CREDENTIALS_PASSWORD=ctsBtRBKHRAx69EqUghvvgEvjnaLjFEB
+    volumes:
+      - ./modules:/root/:ro
+      - ./drivers:/root/:ro
